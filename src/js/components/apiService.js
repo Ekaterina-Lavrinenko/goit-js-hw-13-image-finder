@@ -5,13 +5,13 @@ export default class PhotosApiService {
     }
 
     fetchArticles() {
-        console.log('До запроса: ', this);
+        // console.log('До запроса: ', this);
         const url = `https://pixabay.com/api/?key=21875421-f37db16cddbf605dc200aebe0&q=${this.searchQuery}&image_type=photo&per_page=12&page=${this.page}`;
         return fetch(url)
         .then(r => r.json())
             .then(data => {
                 this.incrementPage();
-                console.log('После запроса, когда все ОК: ', this);
+                console.log(data);
                 return data.articles;
         });
     }
