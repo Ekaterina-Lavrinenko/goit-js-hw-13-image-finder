@@ -1,11 +1,11 @@
 import './css/common.css';
 import PhotosApiService from './js/components/apiService';
-import photoArticle from './templates/articles.hbs';
+import photoImg from './templates/images.hbs';
 
 
 const refs = {
     searchForm: document.querySelector('.js-search-form'),
-    articlesContainer: document.querySelector('.js-articles-container'),
+    imagesContainer: document.querySelector('.js-images-container'),
     loadMoreBtn: document.querySelector('[data-action="load-more"]')
 };
 const photosApiService = new PhotosApiService();
@@ -19,25 +19,25 @@ function onSearch(e) {
 
     photosApiService.query = e.currentTarget.elements.query.value;
     photosApiService.resetPage();
-    photosApiService.fetchArticles().then(hits => {
-        clearArticlesContainer();
-        appendArticlesMarkup(hits);
+    photosApiService.fetchImages().then(hits => {
+        clearImagesContainer();
+        appendImagesMarkup(hits);
     });
 }
 
 function onLoadMore() {
     photosApiService
-        .fetchArticles()
-        .then(appendArticlesMarkup)
+        .fetchImages()
+        .then(appendImagesMarkup)
         .then(scroll);
 }
 
-function appendArticlesMarkup(hits) {
-    refs.articlesContainer.insertAdjacentHTML('beforeend', photoArticle(hits));
+function appendImagesMarkup(hits) {
+    refs.imagesContainer.insertAdjacentHTML('beforeend', photoImg(hits));
 }
 
-function clearArticlesContainer() {
-    refs.articlesContainer.innerHTML = '';
+function clearImagesContainer() {
+    refs.imagesContainer.innerHTML = '';
 }
 
 function scroll() {

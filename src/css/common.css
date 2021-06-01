@@ -53,8 +53,8 @@ button {
   display: none;
 } */
 
-/* Article List */
-.articles {
+/* Images List */
+.images {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
@@ -67,19 +67,19 @@ button {
   margin-bottom: 30px;
 }
 
-.articles li {
+.images li {
   height: 450px;
   overflow: hidden;
 }
 
-.articles img {
+.images img {
   display: block;
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
 
-.articles a {
+.images a {
   text-decoration: none;
   color: #2a2a2a;
 }
@@ -105,5 +105,5 @@ button {
 
 .material-icons {
   margin-right: 5px;
-  margin-left: 10px;
+  margin-left: 8px;
 }
