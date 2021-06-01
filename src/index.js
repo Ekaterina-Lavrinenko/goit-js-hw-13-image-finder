@@ -19,15 +19,30 @@ function onSearch(e) {
 
     photosApiService.query = e.currentTarget.elements.query.value;
     photosApiService.resetPage();
-    photosApiService.fetchArticles().then(appendArticlesMarkup);
+    photosApiService.fetchArticles().then(hits => {
+        clearArticlesContainer();
+        appendArticlesMarkup(hits);
+    });
 }
 
 function onLoadMore() {
-    photosApiService.fetchArticles().then(appendArticlesMarkup);
+    photosApiService
+        .fetchArticles()
+        .then(appendArticlesMarkup)
+        .then(scroll);
 }
 
-function appendArticlesMarkup(articles) {
-    refs.articlesContainer.insertAdjacentHTML('beforeend', photoArticle(articles));
+function appendArticlesMarkup(hits) {
+    refs.articlesContainer.insertAdjacentHTML('beforeend', photoArticle(hits));
 }
 
+function clearArticlesContainer() {
+    refs.articlesContainer.innerHTML = '';
+}
 
+function scroll() {
+  window.scrollTo({
+    top: document.documentElement.scrollHeight,
+    behavior: 'smooth',
+  });
+}
